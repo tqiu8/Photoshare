@@ -1,0 +1,32 @@
+<!doctype html>
+{% if message %}
+<h2>{{ message }}</h2>
+{% endif %}
+
+{% if pictures %}
+	<ul>
+	{% for picture in pictures %}
+		<li><i>{{picture[2]}}</i><br>
+	    <a href='/photo/{{picture[1]}}''><img src='data:image/png;base64, {{picture[0]}}'/></a><br>
+	    <a href='/delete/{{picture[1]}}'>Delete Image</a></li>
+	{% endfor %}
+	</ul>
+
+	<a href='/deletealbum/{{pictures[0][3]}}'>Delete Album</a>
+{% endif %}
+
+
+
+{% if message is none %}
+  <p>You should <a href='/login'>login!</a></p>
+{% else %}
+  <p> Go to <a href='/profile'>profile?</a></p>
+{% endif %}
+
+
+<p> Go to <a href='/profile'>profile?</a></p>
+<ul>
+<li><a href='/upload'>Upload a photo</a> </li> 
+<li><a href='/logout'>Logout</a></li>
+<li><a href='/'>Home</a></li>
+</ul>

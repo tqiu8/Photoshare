@@ -1,0 +1,14 @@
+<!doctype html>
+<head>
+<title>Albums</title>
+</head>
+
+<body>
+<form method="POST" action="{{ url_for('create_album') }}">
+	<label for="name">Enter album name:</label>
+	<input type="name" name="name" /><br /> 
+	<label for="date">Enter today's date:</label>
+	<input type="date" name="date" /><br />
+	<input type="submit" />
+</form>
+</body>

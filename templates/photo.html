@@ -1,0 +1,82 @@
+<!doctype html>
+
+{% if message %}
+<h2>{{message}}</h2>
+{% endif %}
+
+{% if picture %}
+<a href= '/photo/{{picture[2]}}'><img src='data:image/png;base64, {{picture[0]}}'/></a><br>
+<i>{{picture[1]}}</i><br>
+Posted by: {{owner[0]}}<br>
+
+{% if tags %}Tagged:
+	{% for tag in tags %}
+		<a href='/{{tag[0]}}'>{{tag[0]}}</a></t>
+	{% endfor %}
+{% endif %}
+
+<br><a href='/like/{{picture[2]}}'>Like!</a>
+
+{% if likes %}
+{{likes}}<br>
+{% endif %}
+
+{% if users %}
+	{% for user in users %}
+		{{user[0]}}</t>
+	{% endfor %}
+{% endif %}
+
+<br><a href='/delete/{{picture[2]}}'>Delete Image</a><br>
+{% endif %}
+
+
+<form action="/tag/{{picture[2]}}" method="POST">
+	<label for="tags">Add tag:</label>
+	<input type="text" name="tag">
+	<input type="submit" value="Add"><br>
+</form>
+
+Tag Recommender: 
+<form action="/rectags/{{picture[2]}}" method="POST">
+	<label for="query">Enter tags:</label>
+	<input type="text" name="query">
+	<input type="submit" value="Search"><br>
+</form>
+{% if recs %}
+	Here are some recommended tags:
+	{% for rec in recs %}
+	{{rec[0]}}</t>
+	{% endfor %}
+{% endif %}
+
+<p>
+<form action="/comment/{{picture[2]}}" method ="POST">
+	<label for="comments">Add comment:</label><br>
+	<input type="text" name="comment" style="width: 500px; height:200px" /><br>
+	<label for="date">Today's date:</label>
+	<input type="date" name="date" /><br>
+	<input type="submit" value="Post">
+</form></p>
+
+
+
+<p>
+<h4>Comments:</h4>
+{% if comments %}
+	{% for comment in comments %}
+	<li>{{comment[0]}}<br>
+	{{comment[1]}}</t>{{comment[2]}}
+	</li>
+	{% endfor %}
+{% endif %}
+</p>
+
+
+<p> Go to <a href='/profile'>profile?</a></p>
+<ul>
+<li><a href='/albums'>Create an album</a></li>
+<li><a href='/upload'>Upload a photo</a> </li> 
+<li><a href='/logout'>Logout</a></li>
+<li><a href='/'>Home</a></li>
+</ul>
